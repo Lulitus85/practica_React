@@ -13,7 +13,7 @@ class Product extends React.Component {
         {
             this.props.info.stock == 0?
             'Sin stock':
-            <button>Comprar </button>
+            <button value={this.props.info.id} onClick={this.props.buyAction}>Comprar </button>
         }
         <p>Hermano Querido</p>
        </div>  
