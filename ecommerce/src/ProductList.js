@@ -46,10 +46,16 @@ class ProductList extends React.Component {
 }
 
   render(){
+        //al reduce le voy a pasar dos parametros, el previo y el que voy a estar leyendo (o sea el nuevo al sumar productos)
+    let total = this.state.products.reduce((prev, current) => { //esto va a restar el valor total como si fuera un carrito y el comprar seria un delete del carrito.
+        return Math.round(prev + current.stock * current.price) //el total previo mas la cantidad de stock nuevo por el precio nuevo
+    }, 0) // cero porque va a ser el valor inicial.
+
     return (
         <div>  
         <h1>Listado de Productos</h1>     
         <a href="#listado" onClick={this.listProducts}> ver lista de productos </a> 
+        <p> Total a pagar: $ {total} </p>
         {
             this.state.listing ? 
             this.state.products.map((p,i) =>  <Product key={i} buyAction={this.decrementStock} info={p} />) : ''
